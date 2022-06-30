@@ -7,6 +7,15 @@ function Electronic(brand: 'hyundai' | 'tesla') {
   }
 }
 
+const string = (writable: boolean = true) => {
+  return function (target: any, decoratedPropertyName: string): any {
+    return {
+      value: decoratedPropertyName + '123123123',
+      writable
+    }
+  }
+}
+
 function Timer(time: number) {
   return function (target: any, property: any, descripter: any) {
     let origin_method = descripter.value
@@ -23,6 +32,7 @@ function Timer(time: number) {
 
 @Electronic('hyundai')
 class Car {
+  @string()
   brand: string
   wheel: 2 | 4
   constructor(brand: string, wheel: 2 | 4) {
@@ -37,3 +47,5 @@ class Car {
 }
 
 const bentz: Car = new Car('bentz', 4)
+
+console.log(bentz.brand)

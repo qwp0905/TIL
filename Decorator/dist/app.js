@@ -19,6 +19,14 @@ function Electronic(brand) {
         };
     };
 }
+const string = (writable = true) => {
+    return function (target, decoratedPropertyName) {
+        return {
+            value: decoratedPropertyName + '123123123',
+            writable
+        };
+    };
+};
 function Timer(time) {
     return function (target, property, descripter) {
         let origin_method = descripter.value;
@@ -39,9 +47,12 @@ let Car = class Car {
     }
     ride() {
         console.log('singsing');
-        console.log(this.auto);
     }
 };
+__decorate([
+    string(),
+    __metadata("design:type", String)
+], Car.prototype, "brand", void 0);
 __decorate([
     Timer(1000),
     __metadata("design:type", Function),
@@ -53,3 +64,4 @@ Car = __decorate([
     __metadata("design:paramtypes", [String, Number])
 ], Car);
 const bentz = new Car('bentz', 4);
+console.log(bentz.brand);
