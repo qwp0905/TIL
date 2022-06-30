@@ -12,6 +12,12 @@ const router = Router()
  * @param {string} boutique_name 부티크 명
  * @return {User}
  */
+/**
+ * @function API~/bye
+ * @param {object} query
+ * @param {string} query.name
+ * @param {string} query.abc
+ */
 router.get('/hi', (req, res, next) => {
   console.log('api is good')
   res.send('say hello')
