@@ -7,7 +7,7 @@ function Electronic(brand: 'hyundai' | 'tesla') {
   }
 }
 
-const string = (writable: boolean = true) => {
+const string = (writable = true) => {
   return function (target: any, decoratedPropertyName: string): any {
     return {
       value: decoratedPropertyName + '123123123',
