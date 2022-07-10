@@ -5,11 +5,11 @@ export class Bisil {
     this.strength++
     console.log(`비실이의 푸시업...힘 ${this.strength}....`)
   }
-  Tungtung() {
+  tungtung() {
     return this.strength === 20
   }
   training() {
-    while (!this.Tungtung()) {
+    while (!this.tungtung()) {
       console.log('아직 퉁퉁이를 이길 수 없다...')
       this.pushUp()
     }
