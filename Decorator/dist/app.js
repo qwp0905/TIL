@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 function Electronic(brand) {
     return function (constructor) {
         return class extends constructor {
@@ -19,44 +22,42 @@ function Electronic(brand) {
         };
     };
 }
-const string = (writable = true) => {
-    return function (target, decoratedPropertyName) {
+const string = () => {
+    return function (target, property, descriptor) {
+        Object.getOwnPropertyDescriptors(target[property]).name.enumerable = true;
+        console.log(Object.getOwnPropertyDescriptors(target[property]));
         return {
-            value: decoratedPropertyName + '123123123',
-            writable
+            value: property
         };
     };
 };
-function Timer(time) {
-    return function (target, property, descripter) {
-        let origin_method = descripter.value;
-        descripter.value = function (...arg) {
-            const start = new Date().getTime();
-            setTimeout(() => {
-                origin_method.apply(this, ...arg);
-                const end = new Date().getTime();
-                console.log(end - start, 'ms');
-            }, time);
-        };
-    };
-}
+// function Timer(time: number) {
+//   return function (target: any, property: any, descripter: any) {
+//     let origin_method = descripter.value
+//     descripter.value = function (...arg: any[]) {
+//       const start = new Date().getTime()
+//       setTimeout(() => {
+//         origin_method.apply(this, ...arg)
+//         const end = new Date().getTime()
+//         console.log(end - start, 'ms')
+//       }, time)
+//     }
+//   }
+// }
 let Car = class Car {
     constructor(brand, wheel) {
         this.brand = brand;
         this.wheel = wheel;
     }
-    ride() {
+    // @Timer(1000)
+    ride(a) {
         console.log('singsing');
     }
 };
 __decorate([
-    string(),
-    __metadata("design:type", String)
-], Car.prototype, "brand", void 0);
-__decorate([
-    Timer(1000),
+    __param(0, string()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], Car.prototype, "ride", null);
 Car = __decorate([
@@ -64,4 +65,4 @@ Car = __decorate([
     __metadata("design:paramtypes", [String, Number])
 ], Car);
 const bentz = new Car('bentz', 4);
-console.log(bentz.brand);
+bentz.ride('123123');
