@@ -1,9 +1,7 @@
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import {
   MongooseModuleAsyncOptions,
-  MongooseModuleFactoryOptions,
-  MongooseModuleOptions,
-  MongooseOptionsFactory
+  MongooseModuleFactoryOptions
 } from '@nestjs/mongoose'
 
 export const MongooseConfig: MongooseModuleAsyncOptions = {
@@ -11,7 +9,7 @@ export const MongooseConfig: MongooseModuleAsyncOptions = {
   inject: [ConfigService],
   useFactory: async (
     configService: ConfigService
-  ): Promise<MongooseModuleOptions> => ({
-    uri: ''
+  ): Promise<MongooseModuleFactoryOptions> => ({
+    uri: configService.get<string>('URI')
   })
 }
