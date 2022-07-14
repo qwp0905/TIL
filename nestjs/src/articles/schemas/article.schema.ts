@@ -1,7 +1,7 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document, SchemaTypes } from 'mongoose'
 
-@Schema()
+@Schema({ collection: '123' })
 export class Article {
   @Prop({ type: SchemaTypes.ObjectId })
   _id: string
@@ -13,3 +13,8 @@ export class Article {
 export type ArticleDocument = Article & Document
 
 export const ArticleSchema = SchemaFactory.createForClass(Article)
+
+export const ArticleCollection = MongooseModule.forFeature(
+  [{ name: Article.name, schema: ArticleSchema }],
+  'mongo'
+)

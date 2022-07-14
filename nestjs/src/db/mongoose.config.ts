@@ -5,6 +5,7 @@ import {
 } from '@nestjs/mongoose'
 
 export const MongooseConfig: MongooseModuleAsyncOptions = {
+  connectionName: 'mongo',
   imports: [ConfigModule],
   inject: [ConfigService],
   useFactory: async (
