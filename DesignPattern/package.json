@@ -8,6 +8,7 @@
     "format": "prettier --write \"./**/*.ts\""
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
@@ -16,5 +17,8 @@
     "eslint-plugin-prettier": "^4.1.0",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "mongoose": "^6.4.6"
   }
 }
